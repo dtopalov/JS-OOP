@@ -33,19 +33,37 @@ function solve() {
             this.age = age * 1;
             this.firstname = firstname;
             this.lastname = lastname;
-            this.__defineGetter__('fullname', function() {
-                return this.firstname + ' ' + this.lastname;
-            });
+            // this.__defineGetter__('fullname', function() {
+            //     return this.firstname + ' ' + this.lastname;
+            // });
 
-            this.__defineSetter__('fullname', function(val) {
-                if (!validateName(val.split(' ')[0]) ||
-                    !validateName(val.split(' ')[1])) {
+            // this.__defineSetter__('fullname', function(val) {
+            //     if (!validateName(val.split(' ')[0]) ||
+            //         !validateName(val.split(' ')[1])) {
+            //         throw 'Invalid name';
+            //     }
+            //     this.firstname = val.split(' ')[0];
+            //     this.lastname = val.split(' ')[1];
+            // });
+
+        }
+
+        Object.defineProperty(Person.prototype, 'fullname', {
+            get: function() {
+                return this.firstname + ' ' + this.lastname;
+            },
+            set: function(value) {
+                if (!validateName(value.split(' ')[0]) ||
+                    !validateName(value.split(' ')[1])) {
                     throw 'Invalid name';
                 }
-                this.firstname = val.split(' ')[0];
-                this.lastname = val.split(' ')[1];
-            });
-        }
+                this.firstname = value.split(' ')[0];
+                this.lastname = value.split(' ')[1];
+            },
+            enumerable: true,
+            configurable: true,
+            writeable: true
+        });
 
         Person.prototype.introduce = function() {
             return 'Hello! My name is ' +
@@ -58,8 +76,10 @@ function solve() {
             if (name.length < 3 || name.length > 20) {
                 return false;
             }
-            if (name.split().some(function(item) {
-                    return item < 'A' || item > 'z';
+            if (name.split('').some(function(item) {
+                    return (item < 'A' ||
+                        (item > 'Z' && item < 'a') ||
+                        (item > 'z'));
                 })) {
                 return false;
             }
@@ -76,3 +96,4 @@ module.exports = solve;
 // var test = new Person('Ivan', 'Ivanov', 25);
 // test.fullname = 'Pesho Gosho';
 // console.log(test.lastname);
+
