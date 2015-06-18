@@ -38,6 +38,10 @@ function solve() {
             });
 
             this.__defineSetter__('fullname', function(val) {
+                if (!validateName(val.split(' ')[0]) ||
+                    !validateName(val.split(' ')[1])) {
+                    throw 'Invalid name';
+                }
                 this.firstname = val.split(' ')[0];
                 this.lastname = val.split(' ')[1];
             });
