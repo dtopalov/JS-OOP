@@ -62,7 +62,7 @@ function solve() {
             },
             enumerable: true,
             configurable: true,
-            writeable: true
+            writable: true
         });
 
         Person.prototype.introduce = function() {
