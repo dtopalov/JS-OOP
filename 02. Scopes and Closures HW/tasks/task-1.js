@@ -57,8 +57,8 @@ function solve() {
                 books.push(newBook);
             } else {
                 throw 'Book titles must be unique';
-
             }
+
             if (!categories.some(function(item, index) {
                     categoryIndex = index;
                     return item.name === book.category;
@@ -69,6 +69,7 @@ function solve() {
             } else {
                 categories[categoryIndex].books.push(newBook);
             }
+
             return newBook;
         }
 
@@ -93,7 +94,7 @@ function solve() {
             if (typeof book.isbn !== 'string' ||
                 (book.isbn.length !== 10 &&
                     book.isbn.length !== 13) ||
-                book.isbn.split().every(function(item) {
+                book.isbn.split('').every(function(item) {
                     return isNaN(item);
                 })) {
                 throw 'ISBN must be a string, containing 10 or 13 digits';
