@@ -33,14 +33,14 @@ function solve() {
                 var prop;
                 for (prop in property) {
                     if (property.hasOwnProperty(prop)) {
-                        booksTemp = books.filter(function(item) {
+                        booksTemp = booksTemp.filter(function(item) {
                             return item[prop] === property[prop];
                         });
                     }
                 }
             }
-            books = booksTemp.slice();
-            return books.sort(function(a, b) {
+
+            return booksTemp.sort(function(a, b) {
                 return a.id - b.id;
             });
         }
