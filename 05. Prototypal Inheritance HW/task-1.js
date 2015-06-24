@@ -35,10 +35,15 @@ function solve() {
                 this.attributes = {};
                 this.children = [];
                 this.content = '';
+                this.parent = null;
                 return this;
             },
             appendChild: function(child) {
+                if (typeof child !== 'string') {
+                    child.parent = this;
+                }
                 this.children.push(child);
+
                 return this;
             },
             addAttribute: function(name, value) {
@@ -142,7 +147,7 @@ var root = Object.create(domElement)
     .appendChild(head)
     .appendChild(body);
 
-
+console.log(head.parent);
 console.log(root.innerHTML);
 
 // Outputs:
