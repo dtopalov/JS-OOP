@@ -104,7 +104,7 @@ function solve() {
     });
 
     function isTitleValid(title) {
-        if (title.length === 0 || (title !== title.trim()) || title.match(/\s\s/)) {
+        if (title.length === 0 || (title !== title.trim()) || title.match(/\s{2,}/)) {
             return false;
         }
         return true;
