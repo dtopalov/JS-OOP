@@ -150,7 +150,7 @@ function solve() {
     }
 
     function isHomeworkIdValid(homeworkID) {
-        if (isNaN(homeworkID) || homeworkID < 1 || homeworkID > this.presentations.length || (homeworkID !== (homeworkID | 0))) {
+        if (isNaN(homeworkID) || homeworkID < 1 || homeworkID > Course.presentations.length || (homeworkID !== (homeworkID | 0))) {
             return false;
         }
         return true;
