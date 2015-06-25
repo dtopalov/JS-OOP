@@ -53,6 +53,14 @@ function solve() {
                 this.attributes[name] = value;
                 return this;
             },
+            removeAttribute: function(attribute) {
+                if (this.attributes[attribute] !== undefined) {
+                    delete this.attributes[attribute];
+                } else {
+                    throw 'No such attribute';
+                }
+                return this;
+            },
             get innerHTML() {
                 return createInnerHtml(this);
             }
