@@ -120,14 +120,14 @@ function solve() {
             return false;
         }
         if (results.some(function(item) {
-                return (isNaN(item[0]) || isNaN(item[1]) || item[0] < 1 || item[0] > studentIDs);
+                return (isNaN(item.StudentID) || isNaN(item.score) || item.StudentID < 1 || item.StudentID > studentIDs);
             })) {
             return false;
         }
 
         for (i = 0, len = results.length; i < len; i += 1) {
             for (j = i + 1; j < len; j += 1) {
-                if (results[i][0] === results[j][0]) {
+                if (results[i].StudentID === results[j].StudentID) {
                     return false;
                 }
             }
